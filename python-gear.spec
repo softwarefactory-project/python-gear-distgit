@@ -1,17 +1,15 @@
 %global owner openstack-infra
 %global srcname gear
 
-Name: python-%{srcname}
-Version: 0.5.8
-Release: 2%{?dist}
-Summary: Pure Python Async Gear Protocol Library
+Name:      python-%{srcname}
+Version:   0.9.1
+Release:   1%{?dist}
+Summary:   Pure Python Async Gear Protocol Library
 
-Group: Applications/Productivity
-License: ASL 2.0
-URL: https://github.com/openstack-infra/%{srcname}
-Source0: https://pypi.python.org/packages/source/g/gear/gear-0.5.8.tar.gz
-# Patch0001 has been proposed upstream https://review.openstack.org/#/c/186889/
-Patch0001: 0001-gear-lint-non-executable-script.patch
+Group:     Applications/Productivity
+License:   ASL 2.0
+URL:       https://github.com/openstack-infra/%{srcname}
+Source0:   https://github.com/openstack-infra/gear/archive/%{version}.tar.gz
 
 BuildArch: noarch
 
@@ -38,16 +36,15 @@ production use under load.
 
 %prep
 %setup -qn %{srcname}-%{version}
-%patch0001 -p1
 rm -f requirements.txt
 
 
 %build
-%{__python} setup.py build
+PBR_VERSION=%{version} %{__python} setup.py build
 
 
 %install
-%{__python} setup.py install --skip-build --root %{buildroot}
+PBR_VERSION=%{version} %{__python} setup.py install --skip-build --root %{buildroot}
 
 
 %files
@@ -59,6 +56,9 @@ rm -f requirements.txt
 
 
 %changelog
+* Sat May 20 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.9.1-1
+- Bump to 0.9.1
+
 * Tue Apr 11 2017 Tristan Cacqueray <tdecaqu@redhat.com> - 0.5.8-2
 - Add python-setuptool build requirement
 
