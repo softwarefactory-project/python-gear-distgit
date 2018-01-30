@@ -2,7 +2,7 @@
 %global srcname gear
 
 Name:      python-%{srcname}
-Version:   0.9.1
+Version:   0.11.0
 Release:   1%{?dist}
 Summary:   Pure Python Async Gear Protocol Library
 
@@ -56,6 +56,9 @@ PBR_VERSION=%{version} %{__python} setup.py install --skip-build --root %{buildr
 
 
 %changelog
+* Tue Jan 30 2018 Fabien Boucher <fboucher@redhat.com> - 0.11.0-1
+- Bump to 0.11.0
+
 * Sat May 20 2017 Tristan Cacqueray <tdecacqu@redhat.com> - 0.9.1-1
 - Bump to 0.9.1
 
