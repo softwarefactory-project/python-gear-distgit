@@ -3,7 +3,7 @@
 
 Name:      python-%{srcname}
 Version:   0.11.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 Summary:   Pure Python Async Gear Protocol Library
 
 Group:     Applications/Productivity
@@ -19,7 +19,9 @@ BuildRequires: python-pbr
 
 Requires: python-extras
 Requires: python-argparse
-Requires: python-daemon
+# Current usage of gear in SF distro does not require that dep
+# We remove that dep mainly to support RHEL
+# Requires: python-daemon
 Requires: python-pbr
 
 
@@ -56,6 +58,9 @@ PBR_VERSION=%{version} %{__python} setup.py install --skip-build --root %{buildr
 
 
 %changelog
+* Tue Dec 11 2018 Fabien Boucher <fboucher@redhat.com> - 0.11.0-2
+- Remove python-daemon dependency
+
 * Tue Jan 30 2018 Fabien Boucher <fboucher@redhat.com> - 0.11.0-1
 - Bump to 0.11.0
 
